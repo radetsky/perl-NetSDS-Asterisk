@@ -19,9 +19,15 @@ Packager: Dmitriy Kruglikov <dkr@netstyle.com.ua>
 BuildArch: noarch
 Source: %m_distro-%version.tar
 
-Requires: perl-NetSDS perl-Data-Dumper perl-Test-Pod-Coverage perl-Test-Pod
+Requires: perl-NetSDS 
+Requires: perl-Test-Pod-Coverage 
+Requires: perl-Test-Pod
 
-BuildRequires: perl-devel perl-Module-Build perl-Test-Pod-Coverage perl-Test-Pod perl-NetSDS
+BuildRequires: perl-devel 
+BuildRequires: perl-Module-Build 
+BuildRequires: perl-Test-Pod-Coverage 
+BuildRequires: perl-Test-Pod 
+BuildRequires: perl-NetSDS
 
 %description
 This module is meant to be the definitive implementation of NetSDS-Asterisk,
@@ -36,7 +42,7 @@ This module is meant to be the definitive implementation of NetSDS-Asterisk,
 %perl_vendor_install
 
 %files
-%perl_vendor_privlib/NetSDS/Asterisk*
+%perl_vendor_privlib/NetSDS/*
 
 %changelog
 * Tue Dec 20 2011 Dmitriy Kruglikov <dkr@netstyle.com.ua> 0.01-alt2
