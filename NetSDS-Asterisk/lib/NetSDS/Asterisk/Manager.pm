@@ -251,11 +251,11 @@ sub sendcommand {
     return $sent;
 } ## end sub sendcommand
 
-=item B<receiveanswer> 
+=item B<receive_answer> 
 
  Example: 
 
- my $reply = $ami->receiveanswer ( ) ;
+ my $reply = $ami->receive_answer ( ) ;
  print $reply->{'Response'}; 
 
  Use receiveanswer to receive any answer from Asterisk manager. 
