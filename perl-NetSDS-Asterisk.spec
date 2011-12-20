@@ -36,7 +36,7 @@ This module is meant to be the definitive implementation of NetSDS-Asterisk,
 %perl_vendor_install
 
 %files
-%perl_vendor_privlib/NetSDS/Asterisk*
+%perl_vendor_privlib/NetSDS/*
 
 %changelog
 * Tue Dec 20 2011 Dmitriy Kruglikov <dkr@netstyle.com.ua> 0.01-alt2
