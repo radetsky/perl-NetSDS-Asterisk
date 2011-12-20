@@ -6,7 +6,7 @@
 
 Name: perl-NetSDS-Asterisk
 Version: 0.01
-Release: alt1
+Release: alt2
 
 Summary: A general-purpose NetSDS-Asterisk class
 
@@ -39,6 +39,9 @@ This module is meant to be the definitive implementation of NetSDS-Asterisk,
 %perl_vendor_privlib/NetSDS/Asterisk*
 
 %changelog
+* Tue Dec 20 2011 Dmitriy Kruglikov <dkr@netstyle.com.ua> 0.01-alt2
+- Rebuild for Test-P6
+
 * Tue Jun 21 2011 Dmitriy Kruglikov <dkr@netstyle.com.ua> 0.01-alt1
 - initial build for ALT Linux Sisyphus
 
