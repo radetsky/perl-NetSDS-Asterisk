@@ -43,8 +43,6 @@ use NetSDS::Logger;
 use version; our $VERSION = "0.01";
 our @EXPORT_OK = qw();
 
-my @replies;
-
 #===============================================================================
 #
 
@@ -72,6 +70,7 @@ sub new {
     my ( $class, %params ) = @_;
 
     my $this = $class->SUPER::new(%params);
+	  $this->{replies} = undef; 
 
     return $this;
 
@@ -264,10 +263,11 @@ sub sendcommand {
 
 sub receive_answer {
     my $this = shift;
+	  my @replies; 
 
 # Если в буфере что-то еще есть, отдаем оттуда.
 
-    my $reply = shift @replies;
+    my $reply = shift @{$this->{replies}};
     if ( defined($reply) ) {
         return $reply;
     }
@@ -289,12 +289,12 @@ sub receive_answer {
     }
 
     @replies = $this->reply_to_hash($result);
+	  $this->{replies} = \@replies; 
 
-    unless (@replies) {
+    unless ($this->{replies}) {
         $this->seterror("Reply to hash: error.");
         return undef;
     }
-
     return shift @replies;
 
 } ## end sub receiveanswer
