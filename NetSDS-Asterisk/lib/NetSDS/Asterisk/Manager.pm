@@ -70,9 +70,10 @@ sub new {
     my ( $class, %params ) = @_;
 
     my $this = $class->SUPER::new(%params);
-	  $this->{replies} = undef; 
+	$this->{replies} = undef; 
+    $this->{events}  = 'Off';
 
-    return $this;
+    return bless $this;
 
 }
 
@@ -148,7 +149,7 @@ sub connect {
     }
 
     unless ( defined( $this->{'events'} ) ) {
-        $this->{'events'} = 'On';
+        $this->{'events'} = 'Off';
     }
 
     my $socket = IO::Socket::INET->new(
