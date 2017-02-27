@@ -579,6 +579,49 @@ sub write_raw {
     return $size;
 } ## end sub write_raw
 
+sub get_status {
+    my $this = shift;
+
+    my $sent = $this->sendcommand( 'Action' => 'Status' );
+
+    unless ( defined ( $sent ) ) {
+        return undef;
+    }
+
+    my $reply = $this->receive_answer();
+
+    unless ( defined ( $reply ) ) {
+        return undef;
+    }
+
+    my $status = $reply->{'Response'};
+
+    unless ( defined($status) ) {
+        return undef;
+    }
+
+    if ( $status ne 'Success' ) {
+        $this->seterror('Status: Response not success');
+        return undef;
+    }
+
+    # reading from spcket while did not receive Event: StatusComplete
+    my @replies;
+    while (1) {
+        $reply  = $this->receive_answer();
+        if ( defined ( $reply ) ) { 
+            if ( defined ( $reply->{'Event'} ) ) {
+                $status = $reply->{'Event'};
+                if ( $status eq 'StatusComplete' ) {
+                    last;
+                }
+                push @replies, $reply;
+            }
+        }
+    }
+    return @replies;
+} ## end sub get_status
+
 1;
 
 __END__
