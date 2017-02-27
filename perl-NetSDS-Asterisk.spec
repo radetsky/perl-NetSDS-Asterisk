@@ -8,7 +8,7 @@
 %define pkgname NetSDS-Asterisk
 
 Name: perl-NetSDS-Asterisk
-Version: 0.2
+Version: 0.3
 Release: centos7
 
 Summary: A general-purpose NetSDS-Asterisk class
@@ -115,6 +115,9 @@ find %{buildroot}%{_prefix}             \
 %defattr(-,root,root)
 
 %changelog
+* Mon Feb 27 2017 Alex Radetsky <rad@pearlpbx.com> 0.3-centos7
+- Add ofter command get_status to Manager
+
 * Sun Feb 05 2017 Alex Radetsky <rad@pearlpbx.com> 0.2-centos7
 - Fixed EOF bug.
 
