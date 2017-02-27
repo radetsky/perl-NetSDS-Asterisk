@@ -8,8 +8,8 @@
 %define pkgname NetSDS-Asterisk
 
 Name: perl-NetSDS-Asterisk
-Version: 0.1
-Release: 2_centos7
+Version: 0.2
+Release: centos7
 
 Summary: A general-purpose NetSDS-Asterisk class
 
@@ -22,14 +22,14 @@ Packager: Alex Radetsky <rad@pearlpbx.com>
 BuildArch: noarch
 Source: %m_distro-%version.tar
 
-Requires: perl-NetSDS 
-#Requires: perl-Test-Pod-Coverage 
+Requires: perl-NetSDS
+#Requires: perl-Test-Pod-Coverage
 #Requires: perl-Test-Pod
 
-BuildRequires: perl-devel 
-BuildRequires: perl-Module-Build 
-#BuildRequires: perl-Test-Pod-Coverage 
-#BuildRequires: perl-Test-Pod 
+BuildRequires: perl-devel
+BuildRequires: perl-Module-Build
+#BuildRequires: perl-Test-Pod-Coverage
+#BuildRequires: perl-Test-Pod
 #BuildRequires: perl-NetSDS
 
 %description
@@ -115,8 +115,11 @@ find %{buildroot}%{_prefix}             \
 %defattr(-,root,root)
 
 %changelog
+* Sun Feb 05 2017 Alex Radetsky <rad@pearlpbx.com> 0.2-centos7
+- Fixed EOF bug.
+
 * Sat Feb 04 2017 Alex Radetsky <rad@pearlpbx.com> 0.1-centos7
-- Fixed many bugs. 
+- Fixed many bugs.
 
 * Tue Dec 20 2011 Dmitriy Kruglikov <dkr@netstyle.com.ua> 0.01-alt3
 - Fixed spec. Removed unwonted requirements.
