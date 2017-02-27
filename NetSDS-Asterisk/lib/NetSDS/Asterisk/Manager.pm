@@ -274,7 +274,7 @@ sub receive_answer {
     }
 
     my $result = $this->read_raw();
-    unless ( defined($result) ) {
+    unless ( defined ( $result ) ) {
         unless ( ( $this->socket ) and ( $this->socket->connected ) ) {
             $result = $this->reconnect();
             unless ( defined($result) ) {
@@ -327,18 +327,17 @@ sub read_raw {
 
     while (1) {
         unless ( $this->select->can_read($force) ) {
-            if ( $data eq '' )
-            { # Еще ничего не прочитано, то возвращаем ошибку.
+            if ( $data eq '' ) {  # Еще ничего не прочитано, то возвращаем 0
                 return 0;
-            }
-            else {
+            } else {
+		# Типа все вычитали. 
                 return $data;
             }
         }
 
         my $buf = '';
-        my $res = sysread( $this->socket, $buf, 1024 );
-        unless ( defined($res) ) {
+        my $res = sysread ( $this->socket, $buf, 1024 );
+        if ($res == 0) {
             $this->select->remove( $this->socket );
             $this->seterror(
                 sprintf( "Error while reading socket: %s\n", $! ) );
@@ -348,13 +347,13 @@ sub read_raw {
             $data .= $buf;
         }
         if ( $res < 1024 ) {    # Вычитали все, что было.
-					if ($buf =~ /\r\n\r\n$/) { 
-            last;
-					} else { 
-						# Форсированное чтение пока не получим \r\n в конце 
-						$force = 10; 
-						next;
-					}
+	    if ($buf =~ /\r\n\r\n$/) { 
+            	last;
+	    } else { 
+		# Форсированное чтение пока не получим \r\n в конце 
+		$force = 10; 
+		next;
+	    }
         }
         if ( $res >= 1024 ) {
             next;
